@@ -10,4 +10,11 @@ export class SocketWebService extends Socket{
       url:'http://localhost:5000/'
     })
   }
+  listen = () => {
+    this.ioSocket.on('evento', (res: any) => this.outEven.emit(res));   
+  }
+  emitEvent = (payload = {}) => {
+    this.ioSocket.emit('evento', payload)
+
+  }
 }
