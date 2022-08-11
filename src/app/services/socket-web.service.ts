@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 })
 export class SocketWebService {
   constructor(private socket:Socket) {}
-  public getPrices$():Observable<any>{
+  public getData$():Observable<any>{
     return new Observable(observer=>{
       try{
         this.socket.on('conect',()=>{

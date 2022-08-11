@@ -12,7 +12,7 @@ import { LinearComponent } from './graphs/linear/linear.component';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import { LinearBDComponent } from './graphs/linear-bd/linear-bd.component';
-const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
+const config: SocketIoConfig = { url: 'http://localhost:5001', options: {} };
 @NgModule({
   declarations: [
     AppComponent,

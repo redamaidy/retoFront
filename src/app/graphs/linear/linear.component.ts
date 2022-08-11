@@ -14,7 +14,17 @@ export class LinearComponent implements OnInit {
   constructor(private socketWeb: SocketWebService,
     private consultas: ConsultasService) { 
       Chart.register(Annotation)
-
+      this.consultas.getDatos$().subscribe(data=>{
+        for(let i of data){
+          if(i.sensor == 'TEMP'){
+            this.lineChartData.labels?.push(i.date);
+            this.lineChartData.datasets[0].data.push(i.value);
+          }else
+          this.lineChartData.datasets[1].data.push(i.value);
+            this.chart?.update();
+  
+        }
+      });
     }
   showFiller = false;
 
@@ -43,22 +53,25 @@ export class LinearComponent implements OnInit {
     responsive: false
   };
   lineChartLegend = true;
+  lasttemp:number=0;
+  lasthum:number=0;
   ngOnInit(){
-    this.socketWeb.getPrices$().subscribe((data)=>{
+    this.socketWeb.getData$().subscribe((data)=>{
       var date = new Date();
       var ejex = date.toLocaleString();
       const [HUM,TEMP]=data.data;
-      
+      this.lasthum = HUM.value;
+      this.lasttemp = TEMP.value;
       this.lineChartData.datasets[0].data.push(TEMP.value);
       this.lineChartData.datasets[1].data.push(HUM.value);
       this.lineChartData.labels?.push(ejex);
       this.chart?.update();
-      this.consultas.setDatos$(TEMP.sensor,TEMP.value,ejex).subscribe(a=>{
+      /*this.consultas.setDatos$(TEMP.sensor,TEMP.value,ejex).subscribe(a=>{
         console.log(a);
       });
       this.consultas.setDatos$(HUM.sensor,HUM.value,ejex).subscribe(a=>{
         console.log(a);
-      });
+      });*/
     });
   }
 
