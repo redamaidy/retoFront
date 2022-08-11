@@ -8,10 +8,16 @@ import { ConsultasService } from './services/consultas.service';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgChartsModule } from 'ng2-charts';
+import { LinearComponent } from './graphs/linear/linear.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import { LinearBDComponent } from './graphs/linear-bd/linear-bd.component';
 const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    LinearComponent,
+    LinearBDComponent
   ],
   imports: [
     BrowserModule,
@@ -20,7 +26,9 @@ const config: SocketIoConfig = { url: 'http://localhost:5000', options: {} };
     HttpClientModule,
     MatSidenavModule,
     BrowserAnimationsModule,
-    NgChartsModule
+    NgChartsModule,
+    MatButtonModule,
+    MatIconModule
     
   ],
   providers: [ConsultasService],

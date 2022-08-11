@@ -1,26 +1,16 @@
 <div class="header">
-  <p>Title</p>
-  <br>
-  <button type="button" mat-button (click)="drawer.toggle()">
-    Toggle sidenav
+  <button mat-icon-button color="accent" (click)="drawer.toggle()" aria-label="Example icon button with a menu icon">
+    <mat-icon>menu</mat-icon>
   </button>
+  <h1 class="titulo">Visualización de datos en tiempo real</h1>
 </div>
-<mat-drawer-container class="example-container" autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
-    <p>Auto-resizing sidenav</p>
-    <p *ngIf="showFiller">Lorem, ipsum dolor sit amet consectetur.</p>
-    <button (click)="showFiller = !showFiller" mat-raised-button>
-      Toggle extra text
-    </button>
+<mat-drawer-container class="navbar" autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side" opened>
+    <p>Graficas en tiempo real</p>
+    <button mat-button color="primary" [routerLink]="'/linear'" class="btn-nav">Lineal</button>
+    <p>Consultar historial en base de datos</p>
+    <button mat-button color="primary" [routerLink]="'/linearBD'" class="btn-nav">Lineal</button>
+    
   </mat-drawer>
   <router-outlet></router-outlet>
-  <div style="display: block;">
-    <canvas baseChart width="400" height="400"
-      [type]="'line'"
-      [data]="lineChartData"
-      [options]="lineChartOptions"
-      [legend]="lineChartLegend">
-    </canvas>
-  </div>
-  <p>dsad</p>
 </mat-drawer-container>
